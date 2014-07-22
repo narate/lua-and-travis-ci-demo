@@ -8,6 +8,9 @@ local add = function(...)
 end
 
 local div = function(a, b)
+    if b == 0 then
+        return 'inf'
+    end
     return a / b;
 end
 
@@ -31,7 +34,7 @@ describe('My Math Test', function()
 
         it('should failed divide by zero', function()
             local got = div(1,0)
-            assert.equals(0, got)
+            assert.equals('inf', got)
         end)
     end)
 end)
