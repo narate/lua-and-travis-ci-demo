@@ -1,8 +1,8 @@
 local add = function(...)
     local sum = 0;
     local args = ...
-    for k, v in pairs(args) do
-        sum = sum + args[k]
+    for i=1, #args do
+        sum = sum + args[i]
     end
     return sum
 end
@@ -15,10 +15,10 @@ local div = function(a, b)
 end
 
 local sub = function(...)
-    local sub = 0
     local args = ...
-    for k, v in pairs(args) do
-        sum = sum - args[k]
+    local sum = args[1]
+    for i=2, #args do
+        sum = sum - args[i]
     end
     return sum
 end
@@ -26,8 +26,8 @@ end
 local mul = function(...)
     local sum = 1
     local args = ...
-    for k, v in pairs(args) do
-        sum = sum * args[k]
+    for i=1, #args do
+        sum = sum * args[i]
     end
     return sum
 end
@@ -57,9 +57,32 @@ describe('My Math Test', function()
     end)
 
     describe('Test sub', function()
-        it('should return sub(1, 2) == -1', function()
-            local got = sub(1,2)
-            assert.equals(1, got)
+        it('should return sub({1, 2}) == -1', function()
+            local got = sub({1,2})
+            assert.equals(-1, got)
+        end)
+        it('should return sub({10, 2, 2}) == 6', function()
+            local got = sub({10,2,2})
+            assert.equals(6, got)
+        end)
+    end)
+
+    describe('Test mul', function()
+        it('should return mul({1, 2}) == 2', function()
+            local got = mul({1,2})
+            assert.equals(2, got)
+        end)
+        it('should return mul({10, 2, 2}) == 40', function()
+            local got = mul({10,2,2})
+            assert.equals(40, got)
+        end)
+        it('should return mul({10, -2, 2}) == -40', function()
+            local got = mul({10,-2,2})
+            assert.equals(-40, got)
+        end)
+        it('should return mul({10, -2, -2}) == 40', function()
+            local got = mul({10,-2,-2})
+            assert.equals(40, got)
         end)
     end)
 end)
