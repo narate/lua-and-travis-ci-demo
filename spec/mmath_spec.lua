@@ -7,13 +7,31 @@ local add = function(...)
     return sum
 end
 
+local div = function(a, b)
+    return a / b;
+end
+
 describe('My Math Test', function()
-    it('should return 1 + 2 + 3 = 6', function()
-        local got = add({1,2,3})
-        assert.equals(6, got)
+    describe('Test add', function()
+        it('should return 1 + 2 + 3 = 6', function()
+            local got = add({1,2,3})
+            assert.equals(6, got)
+        end)
+        it('should return -1 + 2 + -1 = 0', function()
+            local got = add({-1,2,-1})
+            assert.equals(0, got)
+        end)
     end)
-    it('should return -1 + 2 + -1 = 0', function()
-        local got = add({-1,2,-1})
-        assert.equals(0, got)
+
+    describe('Test div', function()
+        it('should return div(1,2) = 0.5', function()
+            local got = div(1,2)
+            assert.equals(0.5, got)
+        end)
+
+        it('should failed divide by zero', function()
+            local got = div(1,0)
+            assert.equals(0, got)
+        end)
     end)
 end)
