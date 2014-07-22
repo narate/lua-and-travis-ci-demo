@@ -14,6 +14,24 @@ local div = function(a, b)
     return a / b;
 end
 
+local sub = function(...)
+    local sub = 0
+    local args = ...
+    for k, v in pairs(args) do
+        sum = sum - args[k]
+    end
+    return sum
+end
+
+local mul = function(...)
+    local sum = 1
+    local args = ...
+    for k, v in pairs(args) do
+        sum = sum * args[k]
+    end
+    return sum
+end
+
 describe('My Math Test', function()
     describe('Test add', function()
         it('should return 1 + 2 + 3 = 6', function()
@@ -35,6 +53,13 @@ describe('My Math Test', function()
         it('should failed divide by zero', function()
             local got = div(1,0)
             assert.equals('inf', got)
+        end)
+    end)
+
+    describe('Test sub', function()
+        it('should return sub(1, 2) == -1', function()
+            local got = sub(1,2)
+            assert.equals(1, got)
         end)
     end)
 end)
