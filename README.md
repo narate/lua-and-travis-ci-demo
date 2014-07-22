@@ -1,4 +1,4 @@
-lua-and-travis-ci-demo
+Lua, Busted, travis-ci
 ======================
 
 Lua, Busted, travis-ci
